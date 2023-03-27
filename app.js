@@ -1,16 +1,16 @@
-require('babel-register')
-const {success, error} = require('./functions')
-const mysql = require('mysql')
-const bodyParser = require('body-parser')
-const express = require('express')
-const morgan = require('morgan')
-const config = require('./config')
+require('babel-register');
+const {success, error} = require('./assets/functions');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const express = require('express');
+const morgan = require('morgan')('dev');
+const config = require('./assets/config');
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    database: 'nodejsmember',
-    user: 'root',
-    password: ''
+    host: config.db.host,
+    database: config.db.database,
+    user: config.db.user,
+    password: config.db.password
 })
 
 db.connect((err) => {
@@ -24,8 +24,10 @@ db.connect((err) => {
         const app = express()
 
         let MembersRouter = express.Router()
+        let Members = require("./assets/classes/members-class")(db, config);
+        console.log(Members);
 
-        app.use(morgan('dev'))
+        app.use(morgan)
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
 
