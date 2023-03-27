@@ -16,7 +16,7 @@ let Members = class {
                 if (result[0] != undefined) {
                     next(result[0])
                 } else {
-                    next(new Error('Wrong id'))
+                    next(new Error(config.errors.wrongID))
                 }
             })
             .catch((err) => next(err))
@@ -32,7 +32,7 @@ let Members = class {
                 .catch(err => next(err));
 
             } else if (max != undefined) {
-                next(new Error('Wrong max value'));
+                next(new Error(config.errors.wrongMaxValue))
             } else {
 
                 db.query('SELECT * FROM members')
@@ -52,7 +52,7 @@ let Members = class {
                 db.query('SELECT * FROM members WHERE name = ?', [name])
                 .then((result) => {
                     if (result[0] != undefined) {
-                        next(new Error('name already taken'))
+                        next(new Error(config.errors.nameAlreadyTaken))
                     } else {
                         db.query('INSERT INTO members(name) VALUES(?)', [name])
                     }
@@ -68,7 +68,7 @@ let Members = class {
                 })
                 .catch(err => next(err));
             } else {
-                next(new Error('no name value'));
+                next(new Error(config.errors.noNameValue))
             }
         })
     }
@@ -85,12 +85,12 @@ let Members = class {
                         return db.query('SELECT * FROM members WHERE name = ? AND id != ?', [name, id])
                     }
                     else {
-                        next(new Error('Wrong id'));
+                        next(new Error(config.errors.wrongID));
                     }
                 })
                 .then((result) => {
                     if (result[0] != undefined) {
-                        next(new Error('same name'));
+                        next(new Error(config.errors.sameName));
                     } else {
                         return db.query('UPDATE members SET name = ? WHERE id = ?', [name, id]);
                     }
@@ -98,8 +98,23 @@ let Members = class {
                 .then(() => next(true))
                 .catch(err => next(err)) 
             } else {
-                next(new Error('no name value'));
+                next(new Error(config.errors.noNameValue));
             }
+        })
+    }
+
+    static delete(id){
+        return new Promise((next) => {
+            db.query('SELECT * FROM members WHERE id = ?', [id])
+            .then((result) => {
+                if (result[0] != undefined) {
+                    return db.query('DELETE FROM members WHERE id = ?', [id]);
+                } else {
+                    next(new Error(config.errors.wrongID));
+                }
+            })
+            .then(() => next(true))
+            .catch(err => next(err))
         })
     }
 }

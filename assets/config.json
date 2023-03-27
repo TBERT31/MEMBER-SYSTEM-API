@@ -6,5 +6,12 @@
         "database": "nodejsmember",
         "user": "root",
         "password": ""
+    },
+    "errors": {
+        "wrongID": "wrong id",
+        "wrongMaxValue": "wrong max value",
+        "nameAlreadyTaken": "name already taken",
+        "noNameValue": "No name value",
+        "sameName": "same name"
     }
 }
