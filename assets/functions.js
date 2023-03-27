@@ -11,3 +11,7 @@ exports.error = function error(message){
         result: message,
     }
 };
+
+exports.isErr = (err) => {
+    return err instanceof Error;
+}
