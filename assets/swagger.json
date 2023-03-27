@@ -1,0 +1,114 @@
+
+{
+    "info": {
+      "title": "API Member-System Documentation",
+      "version": "1.0.0",
+      "license": {
+        "name": "ISC"
+      },
+      "description": "API REST pour gérer des utilisateurs."
+    },
+    "basePath": "/api/v1",
+    "host": "localhost:8080",
+    "paths": {
+      "members/{id}": {
+        "get": {
+          "tags": ["members"],
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            
+          },
+          "tags": [
+            {
+                "name": "members",
+                "description": "Méthodes ^permettant de gérer les utilisateurs"
+            }
+        ]
+        },
+        "put": {
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            
+          },
+          "tags": [
+            
+          ]
+        },
+        "delete": {
+          "summary": "members/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {
+            
+          },
+          "tags": [
+            
+          ]
+        }
+      },
+      "members": {
+        "get": {
+          "summary": "members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            
+          ],
+          "responses": {
+            
+          },
+          "tags": [
+            
+          ]
+        },
+        "post": {
+          "summary": "members",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            
+          ],
+          "responses": {
+            
+          },
+          "tags": [
+            
+          ]
+        }
+      }
+    },
+    "swagger": "2.0",
+    "tags": [
+      
+    ]
+  }

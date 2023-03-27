@@ -3,6 +3,8 @@ const {success, error, checkAndChange} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const bodyParser = require('body-parser');
 const express = require('express');
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./assets/swagger.json");
 const morgan = require('morgan')('dev');
 const config = require('./assets/config');
 
@@ -14,7 +16,7 @@ mysql.createConnection({
 }).then((db) => {
     console.log('Connected.')
 
-    const app = express()
+    const app = express();
 
     let MembersRouter = express.Router()
     let Members = require("./assets/classes/members-class")(db, config);
@@ -22,7 +24,8 @@ mysql.createConnection({
 
     app.use(morgan)
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     MembersRouter.route('/:id')
 
