@@ -10,10 +10,15 @@
     },
     "basePath": "/api/v1",
     "host": "localhost:8080",
+    "tags": [
+      {
+        "name": "members",
+        "description": "Méthode permettant de gérer les utilisateurs"
+      }
+    ],
     "paths": {
       "members/{id}": {
         "get": {
-          "tags": ["members"],
           "summary": "members/{id}",
           "consumes": [
             "application/json"
@@ -28,12 +33,7 @@
           "responses": {
             
           },
-          "tags": [
-            {
-                "name": "members",
-                "description": "Méthodes ^permettant de gérer les utilisateurs"
-            }
-        ]
+          "tags": ["members"]
         },
         "put": {
           "summary": "members/{id}",
@@ -50,9 +50,7 @@
           "responses": {
             
           },
-          "tags": [
-            
-          ]
+          "tags": ["members"]
         },
         "delete": {
           "summary": "members/{id}",
@@ -69,9 +67,7 @@
           "responses": {
             
           },
-          "tags": [
-            
-          ]
+          "tags": ["members"]
         }
       },
       "members": {
@@ -81,14 +77,16 @@
             "application/json"
           ],
           "parameters": [
-            
+            {
+                "name": "max",
+                "in": "query",
+                "required": false 
+            }
           ],
           "responses": {
             
           },
-          "tags": [
-            
-          ]
+          "tags": ["members"]
         },
         "post": {
           "summary": "members",
@@ -96,19 +94,18 @@
             "application/json"
           ],
           "parameters": [
-            
+            {
+                "name": "name",
+                "in": "body",
+                "required": true 
+            }
           ],
           "responses": {
             
           },
-          "tags": [
-            
-          ]
+          "tags": ["members"]
         }
       }
     },
-    "swagger": "2.0",
-    "tags": [
-      
-    ]
+    "swagger": "2.0"
   }
